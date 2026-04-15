@@ -1,0 +1,16 @@
+  - name: make app directory
+    ansible.builtin.file:
+     path: "{{ app_location }}"
+     state: absent
+    ignore_errors: true
+
+  - name: make app directory
+    ansible.builtin.file:
+     path: "{{ app_location }}"
+     state: directory
+
+  - name: Extract backend code
+    ansible.builtin.unarchive:
+     src: "https://expense-builds.s3.us-east-1.amazonaws.com/expense-{{ backend }}-v2.zip"
+     dest: "{{ app_location }}"
+     remote_src: yes

@@ -8,12 +8,8 @@
      name: nginx
      state: started
      enabled: yes
-
-  - name: Remove default files (delete files)
-    ansible.builtin.file:
-     path: /usr/share/nginx/html
-     state: absent
-
+    ignore_errors: true
+    
   - name: import tasks from common role
     ansible.builtin.import_role:
      name: common
